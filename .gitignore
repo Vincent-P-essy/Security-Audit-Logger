@@ -1,0 +1,58 @@
+## .NET / C#
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.userprefs
+
+## Build output
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+## NuGet
+.nuget/
+*.nupkg
+*.snupkg
+*.nuget.props
+*.nuget.targets
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Test results
+TestResults/
+*.trx
+*.coveragexml
+coverage-report/
+
+## Secrets — NEVER commit these
+appsettings.Production.json
+*.pfx
+*.key
+secrets.json
+.env
+.env.*
+
+## Docker
+.dockerignore
+
+## IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*.DS_Store
+Thumbs.db
+
+## Rider
+*.sln.iml
