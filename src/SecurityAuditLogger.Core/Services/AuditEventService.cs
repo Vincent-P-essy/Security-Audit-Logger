@@ -48,6 +48,12 @@ public class AuditEventService
         return MapToDto(auditEvent);
     }
 
+    public async Task<AuditEventDto?> GetByIdAsync(Guid id, CancellationToken ct = default)
+    {
+        var e = await _eventRepository.GetByIdAsync(id, ct);
+        return e is null ? null : MapToDto(e);
+    }
+
     public Task<AuditEventPageDto> GetEventsAsync(AuditEventFilterDto filter, CancellationToken ct = default)
         => _eventRepository.GetPagedAsync(filter, ct);
 

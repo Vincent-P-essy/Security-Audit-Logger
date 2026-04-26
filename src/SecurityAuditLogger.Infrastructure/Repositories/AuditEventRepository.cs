@@ -127,11 +127,15 @@ public class AuditEventRepository : IAuditEventRepository
             .OrderBy(x => x.Hour)
             .ToListAsync(ct);
 
+        var activeAlerts = await _db.Alerts.LongCountAsync(a => !a.IsAcknowledged, ct);
+        var criticalAlerts = await _db.Alerts.LongCountAsync(
+            a => !a.IsAcknowledged && a.Severity == AlertSeverity.Critical, ct);
+
         return new DashboardSummaryDto(
             totalEvents,
             totalAnomalies,
-            0,
-            0,
+            activeAlerts,
+            criticalAlerts,
             topFailingIps,
             topFailingUsers,
             eventsPerHour

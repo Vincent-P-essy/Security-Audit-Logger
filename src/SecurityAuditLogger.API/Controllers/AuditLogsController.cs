@@ -34,10 +34,8 @@ public class AuditLogsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetEvent(Guid id, CancellationToken ct)
     {
-        var events = await _auditEventService.GetEventsAsync(
-            new AuditEventFilterDto(null, null, null, null, null, null), ct);
-        var match = events.Items.FirstOrDefault(e => e.Id == id);
-        return match is null ? NotFound() : Ok(match);
+        var result = await _auditEventService.GetByIdAsync(id, ct);
+        return result is null ? NotFound() : Ok(result);
     }
 
     /// <summary>List audit events with optional filters and pagination.</summary>
